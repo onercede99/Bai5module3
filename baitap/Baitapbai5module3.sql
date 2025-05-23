@@ -28,7 +28,13 @@ alter table Products add index idx_productcode(productCode);
 
 alter table Products add index idx_name_price(productName, productPrice);
 
+alter table Products
+drop index idx_productcode;
+
+create unique index idx_productcode on Products(productCode);
+
 explain select * from Products where productCode = 1003;
+
 
 explain select * from Products 
 where productName = 'Samsung Galaxy S23 Ultra' and productPrice = 1999.99;
